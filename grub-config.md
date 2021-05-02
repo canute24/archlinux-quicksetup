@@ -11,14 +11,14 @@ setup (hd0)
 quit
 ```
 GRUB2 Update Config: (1.0<GRUB<=1.99)\
-`update-grub / update-grub2` command changed to `grub-mkconfig / grub2-mkconfig`\
-`--root-directory=` option changed to `--boot-directory=`
+`update-grub / update-grub2` command changed to `grub-mkconfig / grub2-mkconfig`
+`--root-directory=` option changed to `--boot-directory=`\
 GRUB2 Fix:
 ```shell
 mount /dev/sda1 /mnt/
 grub-install --boot-directory=/mnt /dev/sda
 ```
-GRUB commandline: (Press "C" in GRUB Menu to load grub commandline. Has paging and command completion)
+GRUB commandline: (Press "c" in GRUB Menu to load grub commandline. Has paging and command completion)
 ```shell
 (get info)
 grub> set pager=1
@@ -74,8 +74,8 @@ grub-mkconfig -o /boot/grub/grub.cfg # If GRUB Legacy is installed then use grub
 grub2-mkrescue --output=<name>.iso /boot/grub
 configfile /grub.cfg # On another pc booted from this iso should show the menu when this command is entered
 ```
-GRUB2 CONFIG FILE EXAMPLES:
-Grub config files are located at /etc/grub.d/. See 10_linux for additional options
+GRUB2 CONFIG FILE EXAMPLES:\
+Grub config files are located at /etc/grub.d/. See 10_linux for additional options\
 To add a new listing make a new file with XX_NAME where XX is a number which is processed in ascending order e.g /etc/grub.d/50_custom_option1
 ###### Source: https://dareneiri.github.io/Configuring-Grub-2-on-CentOS-7/
 ```shell
@@ -106,8 +106,9 @@ chainloader (hd0,1)+1
 }
 EOF
 ```
-To get UUID of disks:
-`ls -l /dev/disk/by-uuid for UUID`
+Adding drives with UUIDs:\
+To get UUID of disks:\
+`ls -l /dev/disk/by-uuid`
 
 ###### Source: https://unix.stackexchange.com/questions/436112/how-to-install-grub-on-windows-10-dual-boot-with-centos and https://askubuntu.com/questions/135272/how-to-boot-into-windows-7-when-grub-is-installed-in-the-windows-partition
 ###### P.S: Difference between GRUB and GRUB2 in drive naming: (hd0,0) is now (hd0,msdos1) when msdos is specified for windows and 1 is the first partition \
