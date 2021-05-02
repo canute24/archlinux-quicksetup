@@ -28,7 +28,7 @@ ip link set wlp3s0 up
 rfkill list
 rfkill unblock wifi
 ip link show wlp3s0
-iw dev interface scan | less #if error then firmware missing
+iw dev interface scan | less # Error implies firmware missing
 wifi-menu
 ```
 FAST START: (Doesn't work with sudo)
@@ -44,7 +44,7 @@ wpa_cli
 > set_network 0 psk "passphrase"
 > enable_network 0
 <2>CTRL-EVENT-CONNECTED - Connection to 00:00:00:00:00:00 completed (reauth) [id=0 id_str=]
->save_config
+> save_config
 dhcpd <interface>/
 ```
 ###### File: /etc/wpa_supplicant/wpa_supplicant.conf
@@ -61,21 +61,23 @@ update_config=1
 
 ### SYSTEM CONFIG:
 ###### Souce: https://wiki.archlinux.org/index.php/General_recommendations
-```
+Setup Filesystem:
+```shell
 install ntfs-3g
+```
+Update fstab: ntfs-3g preferred for ntfs volumes
+```shell
 cp /etc/fstab ~/home/fstab.bak # Create backup before editing
-
-mkdir /mnt/garage
-/dev/sda2 /mnt/garage ntfs-3g defaults,locale=en_US.utf8 0 0
-mkdir /mnt/valut
-/dev/sda4 /mnt/valut vfat iocharset=utf8,umask=000 0 0
+mkdir /mnt/garage /dev/sda2 /mnt/garage ntfs-3g defaults,locale=en_US.utf8 0 0
+mkdir /mnt/vault /dev/sda4 /mnt/vault vfat iocharset=utf8,umask=000 0 0
 ```
 Setup Users and Groups:
 ###### Source: https://wiki.archlinux.org/index.php/Users_and_groups https://wiki.archlinux.org/index.php/Sudo
 ```shell
 useradd -m -G wheel <USERNAME>
 passwd <USERNAME>
-visudo /etc/sudoers #uncomment %wheel      ALL=(ALL) ALL
+visudo /etc/sudoers
+> %wheel      ALL=(ALL) ALL # Uncomment this line
 setleds -D +num #numlock on
 ```
 Setup ramdrive tmpfs: Not required for Arch and tempfs is already in ramdrive
