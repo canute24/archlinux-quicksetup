@@ -1,5 +1,5 @@
 # Arch Linux Additional Setup:
-#### Hardware Config:
+### Hardware Config:
 ###### Source: https://wiki.archlinux.org/index.php/Wireless_network_configuration
 Check Hardware:
 ```shell
@@ -19,7 +19,7 @@ Other frequency scaling drivers / daemons:
 - i7z
 - thermald.service
 
-#### Network Config: 
+### Network Config: 
 ###### Source: https://wiki.archlinux.org/index.php/WPA_supplicant
 Configure network:
 ```shell
@@ -59,7 +59,7 @@ ctrl_interface=/run/wpa_supplicant
 update_config=1
 ```
 
-####SYSTEM CONFIG:
+### SYSTEM CONFIG:
 ###### Souce: https://wiki.archlinux.org/index.php/General_recommendations
 ```
 install ntfs-3g
@@ -141,5 +141,6 @@ Xwindows setup:
 ###### Source: https://wiki.archlinux.org/index.php/Xinit
 ```shell
 xorg-xinit will install xinit
-startx used to run xinit which reads ~/.xinitrc #if not available then /etc/X11/xinit/xinitrc # Appending & at the end of the program will put it in the background
+startx& # Appending & at the end of the program will put it in the background
 ```
+`startx` is used to run xinit which reads `~/.xinitrc` if not available then `/etc/X11/xinit/xinitrc` is read instead
